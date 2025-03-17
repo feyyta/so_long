@@ -26,6 +26,7 @@ void	visitmap(t_map *map, int x, int y, char **visited)
 }
 /*init by 0 the tab visited then call visitmap then check if we 
 succed to visit exit and coins so the path is ok then free visited*/
+
 int	checkpath(t_map *map)
 {
 	char	**visited;

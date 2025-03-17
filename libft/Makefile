@@ -1,7 +1,7 @@
 NAME = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -fPIE
+CFLAGS = -Wall -Wextra -Werror -Iinc -fPIE
 
 
 OBJ_DIR = objects/
@@ -71,7 +71,6 @@ all: create_dirs $(NAME)
 create_dirs:
 	@mkdir -p $(OBJ_LIBFT_DIR) $(OBJ_PRINTF_DIR) $(OBJ_GNL_DIR)
 
-# Compile rules for each directory
 $(OBJ_LIBFT_DIR)%.o: src/libft/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -83,14 +82,17 @@ $(OBJ_PRINTF_DIR)%.o: src/ft_printf/%.c
 $(OBJ_GNL_DIR)%.o: src/get_next_line/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
 
+$(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
+
 clean:
 	@rm -rf $(OBJ_DIR)
 
+
 fclean: clean
 	@rm -f $(NAME)
+
 
 re: fclean all
 

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	initimg(t_game *game,t_img *text)
+int	initimg(t_game *game, t_img *text)
 {
 	text->floor = mlx_xpm_file_to_image(game->window->mlx,
 			"img/floor/wooden.xpm", &text->cols, &text->rows);

@@ -59,7 +59,7 @@ int	checkchars(t_map *map)
 		j = -1;
 		while (++j < map->cols)
 		{
-			if(!ft_strchr("01CEP", map->tab[i][j]))
+			if (!ft_strchr("01CEP", map->tab[i][j]))
 				return (0);
 		}
 	}

@@ -10,12 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
+	/*movetxt = ft_strlen("u move ") + ft_strlen((move) + 1 );
+	txt = malloc(movetxt);
+	if(!txt)
+	{
+		free(move);
+		return ;
+	}*/
+/*ft_strlcpy(txt, "u move ", movetxt);
+	ft_strlcat(txt, move, movetxt);
+	mlx_string_put(game->window->mlx,
+		game->window->win,40, 20, 0xFFFFFF,txt);
+	free(txt);
+	free(move);*/
 void	domap(t_game *game)
 {
-	char *move;
-	
+	char	*move;
+
 	mlx_clear_window(game->window->mlx, game->window->win);
 	drawback(game);
 	drawcep(game);

@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
-int	keyboard(int keysym, t_game *game)
+int	keyboard(int key, t_game *game)
 {
 	int	moved;
 
 	moved = 0;
-	if (keysym == 65307)
+	if (key == 65307)
 		closewindow(game);
-	else if (keysym == 119 || keysym == 65362)
+	else if (key == 119 || key == 65362)
 		moved = move(game, 0, -1);
-	else if (keysym == 115 || keysym == 65364)
+	else if (key == 115 || key == 65364)
 		moved = move(game, 0, 1);
-	else if (keysym == 97 || keysym == 65361)
+	else if (key == 97 || key == 65361)
 		moved = move(game, -1, 0);
-	else if (keysym == 100 || keysym == 65363)
+	else if (key == 100 || key == 65363)
 		moved = move(game, 1, 0);
 	if (moved)
 		domap(game);
@@ -60,11 +60,11 @@ int	move(t_game *game, int dx, int dy)
 	return (1);
 }
 
-int	closewindow(void *param)
+int	closewindow(void *gameu)
 {
 	t_game	*game;
 
-	game = (t_game *)param;
+	game = (t_game *)gameu;
 	if (game->map && game->map->tab)
 		freemap(game->map);
 	destroytext(game, game->text);

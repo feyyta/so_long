@@ -77,7 +77,7 @@ int	alloctab(t_map *map)
 	return (1);
 }
 
-int		cpymap(char *ext, t_map *map)
+int	cpymap(char *ext, t_map *map)
 {
 	int		fd;
 	char	*line;

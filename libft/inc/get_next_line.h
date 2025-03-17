@@ -6,7 +6,7 @@
 /*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 21:44:11 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/14 22:18:59 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:41:45 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 8
 # endif 
-
-#include "libft.h"
+# include "libft.h"
 
 char	*get_next_line(int fd);
 void	fill_stash(int fd, char **stash);

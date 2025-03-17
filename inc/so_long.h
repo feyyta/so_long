@@ -6,7 +6,7 @@
 /*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:07:58 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/15 00:07:59 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:59:33 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_game
 {
 	t_window	*window;
 	t_map		*map;
-	t_img	*text;
+	t_img		*text;
 	int			remaining;
 	int			collectibles;
 	int			collected;
@@ -63,8 +63,7 @@ typedef struct s_game
 }	t_game;
 
 int		initgame(t_game *game, t_window *window, t_map *map, t_img *text);
-int		init_mlx(t_window *vars);
-void	set_hooks(t_window *vars, t_game *game);
+void	set_hooks(t_window *window, t_game *game);
 int		checkelements(t_map *map, t_game *game);
 int		checkerror(char *filename, t_map *map, t_game *game);
 void	errormap(t_map *map, char *msg);
@@ -91,6 +90,6 @@ int		initimg(t_game *game, t_img *text);
 void	drawcep(t_game *game);
 void	drawback(t_game *game);
 void	domap(t_game *game);
-int		closewindow(void *param);
+int		closewindow(void *gameu);
 
 #endif

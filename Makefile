@@ -14,11 +14,11 @@ NAME = so_long
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDES = -I includes/ -I libft/includes/ -I mlx/
+INC = -I inc/ -I libft/inc/ -I mlx/
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
 
-SRC = srcs/main.c srcs/check.c srcs/seemap.c srcs/check2.c srcs/check3.c \
+SRC = srcs/check.c srcs/seemap.c srcs/check2.c srcs/check3.c \
 	srcs/path.c srcs/img.c srcs/initgame.c \
 	srcs/draw.c srcs/keyboard.c
 
@@ -44,10 +44,10 @@ $(MLX):
 	@$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LIBFT) $(MLX_FLAGS)
 
-$(OBJ_DIR)%.o: srcs/%.c includes/so_long.h
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(OBJ_DIR)%.o: srcs/%.c inc/so_long.h
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
