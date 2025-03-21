@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 /*tag each accessible pos by 1 ine the map*/
 void	visitmap(t_map *map, int x, int y, char **visited)
 {

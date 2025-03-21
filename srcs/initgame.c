@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
 int	initgame(t_game *game, t_window *window, t_map *map, t_img *text)
 {

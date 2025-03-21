@@ -6,7 +6,7 @@
 /*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:07:58 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/17 19:59:33 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:56:31 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ typedef struct s_game
 int		initgame(t_game *game, t_window *window, t_map *map, t_img *text);
 void	set_hooks(t_window *window, t_game *game);
 int		checkelements(t_map *map, t_game *game);
-int		checkerror(char *filename, t_map *map, t_game *game);
+int		checkerror(char *ext, t_map *map, t_game *game);
 void	errormap(t_map *map, char *msg);
 void	visitmap(t_map *map, int x, int y, char **visited);
 int		checkpath(t_map *map);
 int		checkvalidpath(t_map *map, char **visited);
 int		countcols(char *line);
 int		countrows(int fd);
-int		readmap(char *filename, t_map *map);
+int		readmap(char *ext, t_map *map);
 int		alloctab(t_map *map);
-int		cpymap(char *filename, t_map *map);
+int		cpymap(char *ext, t_map *map);
 int		checkwalls(t_map *map);
 int		checkext(char *filename);
 void	initmapvalues(t_map *map);
 int		checkplayer(t_map *map);
 int		checkcols(char *line, int cols);
-int		checkrectang(char *filename, t_map *map);
+int		checkrectang(char *ext, t_map *map);
 int		checkchars(t_map *map);
 void	freemap(t_map *map);
 int		keyboard(int keysym, t_game *game);

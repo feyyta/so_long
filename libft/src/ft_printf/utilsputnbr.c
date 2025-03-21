@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utilsputnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastrat <mcastrat@student.s19.be>         +#+  +:+       +#+        */
+/*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:24:41 by mcastrat          #+#    #+#             */
-/*   Updated: 2024/10/30 16:29:48 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/18 23:54:10 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int	ft_putnbr(int nb)
 {

@@ -10,23 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
 int	checkcols(char *line, int cols)
 {
 	int	actualcols;
 
+	if (!line)
+		return (0);
 	actualcols = countcols(line);
 	return (actualcols == cols);
 }
 
-int	checkrectang(char *filename, t_map *map)
+int	checkrectang(char *ext, t_map *map)
 {
 	int		fd;
 	char	*line;
 	int		colsneeded;
 
-	fd = open(filename, O_RDONLY);
+	fd = open(ext, O_RDONLY);
 	if (fd < 0)
 		return (0);
 	line = get_next_line(fd);
@@ -38,7 +40,8 @@ int	checkrectang(char *filename, t_map *map)
 		if (!checkcols(line, colsneeded))
 		{
 			free(line);
-			get_next_line(-42);
+			get_next_line(-19);
+			close(fd);
 			return (0);
 		}
 		free(line);

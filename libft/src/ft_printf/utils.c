@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastrat <mcastrat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 23:04:19 by mcastrat          #+#    #+#             */
-/*   Updated: 2024/11/01 16:49:44 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/18 23:54:00 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int	ft_putchar(char c)
 {

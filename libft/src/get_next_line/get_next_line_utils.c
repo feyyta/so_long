@@ -6,11 +6,11 @@
 /*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 22:21:26 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/14 22:21:31 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/18 23:53:42 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/get_next_line.h"
 
 int	find_nl(char *stash)
 {

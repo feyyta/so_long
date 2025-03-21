@@ -6,11 +6,11 @@
 /*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 22:21:36 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/14 22:21:37 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/03/18 23:53:25 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/get_next_line.h"
 
 void	fill_stash(int fd, char **stash)
 {
@@ -78,7 +78,7 @@ void	clean_stash(char **stash)
 		*stash = NULL;
 		return ;
 	}
-	new_stock = malloc((ft_strlen(*stash) - len) + 1);
+	new_stock = malloc((ft_strlen(*stash) - len + 1));
 	if (!new_stock)
 		return ;
 	i = 0;
@@ -96,7 +96,13 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+	{
+		if (fd == -19 && stash)
+		{
+			free(stash);
+			stash = NULL;
+		}
+	}
 	fill_stash(fd, &stash);
 	if (!stash || stash[0] == '\0')
 	{

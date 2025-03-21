@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
+/*just checking*/
 int	checkerror(char *ext, t_map *map, t_game *game)
 {
 	initmapvalues(map);
