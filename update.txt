@@ -1,0 +1,15 @@
+so_long update file.
+
+map.c == norm 42 and check if the file still ok with other
+
+check.c == working, need to add check for perm file like chmod 000(fixed) and need to reduce line of one ft then norm 42
+
+
+utils, player, check too many ft.(fixed)
+
+split arg in the path ft
+
+Error: ASSIGN_IN_CONTROL    (line:  59, col:  18):	Assignment in control structure
+Error: ASSIGN_IN_CONTROL    (line:  88, col:  18):	Assignment in control structure
+
+

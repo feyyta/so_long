@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
+/*   By: mcastrat <mcastrat@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:03:34 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/18 23:53:53 by mcastrat         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:38:43 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "ft_printf.h"
 
 int	check(const char str, va_list args)
 {

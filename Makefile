@@ -18,9 +18,8 @@ INC = -I inc/ -I libft/inc/ -I mlx/
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
 
-SRC = srcs/check.c srcs/seemap.c srcs/check2.c srcs/check3.c \
-	srcs/path.c srcs/img.c srcs/initgame.c \
-	srcs/draw.c srcs/keyboard.c
+SRC = srcs/element_wall.c srcs/game.c srcs/main.c srcs/map.c \
+	srcs/player.c srcs/utils.c srcs/path_rect.c srcs/utils2.c
 
 OBJ_DIR = objects/
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))

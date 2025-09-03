@@ -3,93 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
+/*   By: feita <feita@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:07:58 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/20 16:56:31 by mcastrat         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:52:23 by feita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "get_next_line.h"
 # include "libft.h"
-# include "../mlx/mlx.h"
-# include <stdio.h>
+# include "mlx.h"
 # include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 # define TILE_SIZE 64
+# define ESC_KEY 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define UP_KEY 65362
+# define LEFT_KEY 65361
+# define DOWN_KEY 65364
+# define RIGHT_KEY 65363
 
 typedef struct s_map
 {
-	char	**tab;
-	int		rows;
+	char	**grid;
+	int		width;
 	int		cols;
-	int		collectibles;
-	int		start_x;
-	int		start_y;
+	int		height;
+	int		player_x;
+	int		player_y;
 	int		exit_x;
 	int		exit_y;
-	int		player_count;
-	int		exit_count;
-}	t_map;
-
-typedef struct s_window
-{
-	void	*mlx;
-	void	*win;
-}	t_window;
-
-typedef struct s_img
-{
-	void	*floor;
-	void	*wall;
-	void	*player;
-	void	*collect;
-	void	*exit;
-	int		cols;
-	int		rows;
-}	t_img;
+	int		collectibles;
+	int		collected;
+}			t_map;
 
 typedef struct s_game
 {
-	t_window	*window;
-	t_map		*map;
-	t_img		*text;
-	int			remaining;
-	int			collectibles;
-	int			collected;
-	int			moves;
-}	t_game;
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+	int		moves;
+	int		game_over;
+}			t_game;
 
-int		initgame(t_game *game, t_window *window, t_map *map, t_img *text);
-void	set_hooks(t_window *window, t_game *game);
-int		checkelements(t_map *map, t_game *game);
-int		checkerror(char *ext, t_map *map, t_game *game);
-void	errormap(t_map *map, char *msg);
-void	visitmap(t_map *map, int x, int y, char **visited);
-int		checkpath(t_map *map);
-int		checkvalidpath(t_map *map, char **visited);
-int		countcols(char *line);
-int		countrows(int fd);
-int		readmap(char *ext, t_map *map);
-int		alloctab(t_map *map);
-int		cpymap(char *ext, t_map *map);
-int		checkwalls(t_map *map);
-int		checkext(char *filename);
-void	initmapvalues(t_map *map);
-int		checkplayer(t_map *map);
-int		checkcols(char *line, int cols);
-int		checkrectang(char *ext, t_map *map);
-int		checkchars(t_map *map);
-void	freemap(t_map *map);
-int		keyboard(int keysym, t_game *game);
-int		move(t_game *game, int dx, int dy);
-void	destroytext(t_game *game, t_img *text);
-int		initimg(t_game *game, t_img *text);
-void	drawcep(t_game *game);
-void	drawback(t_game *game);
-void	domap(t_game *game);
-int		closewindow(void *gameu);
+typedef struct s_path_data
+{
+	char	**grid;
+	int		width;
+	int		height;
+	int		*collectibles;
+	int		*exit_found;
+	int		total;
+}			t_path_data;
+
+int			check_ext(char *filename);
+int			load_map_data(char *filename, t_map *map);
+int			check_path(t_map *map);
+void		free_map(t_map *map);
+void		cleanup_game(t_game *game);
+int			load_textures(t_game *game);
+void		destroy_textures(t_game *game);
+void		render_game(t_game *game);
+void		error_map(t_map *map, char *message);
+int			close_game(t_game *game);
+int			key_press(int keycode, t_game *game);
+void		print_move_count(t_game *game);
+void		free_temp_grid(char **temp_grid, int height);
+int			check_elements(t_map *map);
+int			check_walls(t_map *map);
+int			check_rectangular(t_map *map);
+void		handle_exit(t_game *game, int x, int y);
 
 #endif

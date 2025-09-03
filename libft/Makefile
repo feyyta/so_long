@@ -19,15 +19,15 @@ SRC_LIBFT = src/libft/ft_atoi.c \
 			src/libft/ft_isdigit.c \
 			src/libft/ft_isprint.c \
 			src/libft/ft_itoa.c \
-			src/libft/ft_lstadd_back.c \
-			src/libft/ft_lstadd_front.c \
-			src/libft/ft_lstclear.c \
-			src/libft/ft_lstdelone.c \
-			src/libft/ft_lstiter.c \
-			src/libft/ft_lstlast.c \
-			src/libft/ft_lstmap.c \
-			src/libft/ft_lstnew.c \
-			src/libft/ft_lstsize.c \
+			src/libft/ft_lstadd_back_bonus.c \
+			src/libft/ft_lstadd_front_bonus.c \
+			src/libft/ft_lstclear_bonus.c \
+			src/libft/ft_lstdelone_bonus.c \
+			src/libft/ft_lstiter_bonus.c \
+			src/libft/ft_lstlast_bonus.c \
+			src/libft/ft_lstmap_bonus.c \
+			src/libft/ft_lstnew_bonus.c \
+			src/libft/ft_lstsize_bonus.c \
 			src/libft/ft_memchr.c \
 			src/libft/ft_memcmp.c \
 			src/libft/ft_memcpy.c \
@@ -58,7 +58,6 @@ SRC_PRINTF = src/ft_printf/ft_printf.c \
              src/ft_printf/utils.c 
 
 SRC_GNL = src/get_next_line/get_next_line.c \
-          src/get_next_line/get_next_line_utils.c
 
 OBJ_LIBFT = $(patsubst src/libft/%.c,$(OBJ_LIBFT_DIR)%.o,$(SRC_LIBFT))
 OBJ_PRINTF = $(patsubst src/ft_printf/%.c,$(OBJ_PRINTF_DIR)%.o,$(SRC_PRINTF))

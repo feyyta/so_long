@@ -3,51 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastrat <mcastrat.s19.be>                 +#+  +:+       +#+        */
+/*   By: mcastrat <mcastrat@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 22:21:36 by mcastrat          #+#    #+#             */
-/*   Updated: 2025/03/18 23:53:25 by mcastrat         ###   ########.fr       */
+/*   Created: 2024/12/02 06:51:45 by mcastrat          #+#    #+#             */
+/*   Updated: 2024/12/02 07:11:00 by mcastrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/get_next_line.h"
+#include "libft.h"
 
-void	fill_stash(int fd, char **stash)
+void	inibuff(char **line)
 {
-	int		bytes_read;
-	char	*buf;
-	char	*temp;
-
-	bytes_read = 1;
-	initialise_stash(stash);
-	while (!(ft_strchr(*stash, '\n')) && bytes_read > 0)
+	if (!(*line))
 	{
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!buf)
+		*line = malloc(1);
+		if (!(*line))
 			return ;
-		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(buf);
-			return ;
-		}
-		buf[bytes_read] = '\0';
-		temp = ft_strjoin(*stash, buf);
-		free(*stash);
-		*stash = temp;
-		free(buf);
+		(*line)[0] = '\0';
 	}
 }
 
-void	extract_stash_line(char *stash, char **line)
+void	getnext(char **buff)
+{
+	size_t	i;
+	size_t	len;
+	char	*newbuff;
+
+	len = 0;
+	i = 0;
+	while ((*buff)[len] && (*buff)[len] != '\n')
+		len++;
+	if ((*buff)[len] == '\n')
+		len++;
+	if ((*buff)[len] == '\0')
+	{
+		free(*buff);
+		*buff = NULL;
+		return ;
+	}
+	newbuff = malloc((ft_strlen(*buff) - len) + 1);
+	if (!newbuff)
+		return ;
+	while ((*buff)[len])
+		newbuff[i++] = (*buff)[len++];
+	newbuff[i] = '\0';
+	free(*buff);
+	*buff = newbuff;
+}
+
+void	getliine(char *buff, char **line)
 {
 	int	i;
 	int	len;
 
 	len = 0;
-	while (stash[len] && stash[len] != '\n')
+	while (buff[len] && buff[len] != '\n')
 		len++;
-	if (stash[len] == '\n')
+	if (buff[len] == '\n')
 		len++;
 	*line = malloc(sizeof(char) * (len + 1));
 	if (!(*line))
@@ -55,62 +67,58 @@ void	extract_stash_line(char *stash, char **line)
 	i = 0;
 	while (i < len)
 	{
-		(*line)[i] = stash[i];
+		(*line)[i] = buff[i];
 		i++;
 	}
 	(*line)[i] = '\0';
 }
 
-void	clean_stash(char **stash)
+void	readbuff(int fd, char **line)
 {
-	size_t	i;
-	size_t	len;
-	char	*new_stock;
+	int		nbyte;
+	char	*tempbuff;
+	char	*newline;
 
-	len = 0;
-	while ((*stash)[len] && (*stash)[len] != '\n')
-		len++;
-	if ((*stash)[len] == '\n')
-		len++;
-	if ((*stash)[len] == '\0')
+	nbyte = 1;
+	inibuff(line);
+	while (!(ft_strchr(*line, '\n')) && nbyte > 0)
 	{
-		free(*stash);
-		*stash = NULL;
-		return ;
+		tempbuff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!tempbuff)
+			return ;
+		nbyte = read(fd, tempbuff, BUFFER_SIZE);
+		if (nbyte == -1)
+		{
+			free(tempbuff);
+			free(*line);
+			*line = NULL;
+			return ;
+		}
+		tempbuff[nbyte] = '\0';
+		newline = ft_strjoin(*line, tempbuff);
+		free(*line);
+		*line = newline;
+		free(tempbuff);
 	}
-	new_stock = malloc((ft_strlen(*stash) - len + 1));
-	if (!new_stock)
-		return ;
-	i = 0;
-	while ((*stash)[len])
-		new_stock[i++] = (*stash)[len++];
-	new_stock[i] = '\0';
-	free(*stash);
-	*stash = new_stock;
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stash;
+	static char	*buff = NULL;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (free(buff), NULL);
+	readbuff(fd, &buff);
+	if (!buff || buff[0] == '\0')
 	{
-		if (fd == -19 && stash)
-		{
-			free(stash);
-			stash = NULL;
-		}
-	}
-	fill_stash(fd, &stash);
-	if (!stash || stash[0] == '\0')
-	{
-		free(stash);
-		stash = NULL;
+		free(buff);
+		buff = NULL;
 		return (NULL);
 	}
-	extract_stash_line(stash, &line);
-	clean_stash(&stash);
+	getliine(buff, &line);
+	getnext(&buff);
+	printf("%s", buff);
 	return (line);
 }
